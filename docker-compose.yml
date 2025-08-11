@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
-    container_name: apecom-bot
     restart: always
     environment:
       - NODE_ENV=production
@@ -29,7 +28,6 @@ services:
       context: .
       dockerfile: Dockerfile
       target: builder
-    container_name: apecom-bot-dev
     restart: unless-stopped
     environment:
       - NODE_ENV=development
