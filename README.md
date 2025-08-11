@@ -39,18 +39,19 @@ A modern Telegram bot built with [Telegraf](https://telegraf.js.org/) and TypeSc
 # Copy environment template
 cp env.example .env
 
-# Edit .env file and add your bot token
+# Edit .env file
+BOT_NAME=your_bot_name_for_info
 BOT_TOKEN=your_actual_bot_token_here
 ```
 
 ### 3. Run with Docker (Recommended)
 
 ```bash
-# Build and run with docker-compose
-docker-compose up --build
+# Build and run with docker compose
+docker compose up --build
 
 # Or run in background
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 ### 4. Run Locally
@@ -96,39 +97,40 @@ npm start
 
 ```bash
 # Build and run production container
-docker-compose up --build
+docker compose up --build
 
 # Run in background
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 ### Development
 
 ```bash
 # Run development container with hot reloading
-docker-compose --profile dev up --build
+docker compose --profile dev up --build
 ```
 
 ### Docker Commands
 
 ```bash
 # View logs
-docker-compose logs -f telegram-bot
+docker compose logs -f telegram-bot
 
 # Stop services
-docker-compose down
+docker compose down
 
 # Rebuild without cache
-docker-compose build --no-cache
+docker compose build --no-cache
 
 # Check container health
-docker-compose ps
+docker compose ps
 ```
 
 ## Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
+| `BOT_NAME` | Telegram bot name for info | No |
 | `BOT_TOKEN` | Telegram bot token from @BotFather | Yes |
 | `NODE_ENV` | Environment (development/production) | No |
 
@@ -166,10 +168,10 @@ Available commands:
 
 ```bash
 # View application logs
-docker-compose logs telegram-bot
+docker compose logs telegram-bot
 
 # View real-time logs
-docker-compose logs -f telegram-bot
+docker compose logs -f telegram-bot
 ```
 
 ## Contributing

@@ -1,5 +1,5 @@
 {
-  "name": "apecom",
+  "name": "telegram-bot-poller",
   "version": "1.0.0",
   "description": "Telegram bot using Telegraf and TypeScript",
   "main": "dist/index.js",
