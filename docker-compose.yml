@@ -1,0 +1,50 @@
+services:
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: apecom-bot
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+    networks:
+      - bot-network
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "console.log('Health check passed')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Development service (optional)
+  telegram-bot-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: apecom-bot-dev
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+    volumes:
+      # Mount source code for hot reloading
+      - ./src:/app/src
+      - ./logs:/app/logs
+    networks:
+      - bot-network
+    profiles:
+      - dev
+    command: npm run dev
+
+networks:
+  bot-network:
+    driver: bridge 
